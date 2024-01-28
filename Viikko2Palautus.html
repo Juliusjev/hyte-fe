@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <title>Week2
+    </title>
+    <meta charset="UTF-8">
+
+    <style>
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        background-color: rgb(174, 209, 129);
+      }
+
+      p {
+        color: rgb(3, 3, 3);
+      }
+
+      .info {
+        color: rgb(91, 140, 26);
+      }
+      .bigfont {
+        font-size: 26px;
+      }
+
+      .box {
+        height: 100px;
+        display: block;
+        color: aliceblue;
+        text-align: center;
+        padding: 28px;
+        float: left;
+
+        
+      }
+      .clear {
+        clear: both;
+      }
+      main {
+        padding: 10px;
+        width: 75%;
+        margin: 50px auto 100px auto;
+        padding-left: 50px;
+        padding-right: 100px;
+        background-image: url(img/lehtitausta.jpg);
+        box-shadow: 0 3px 10px black;
+        position: relative;
+
+      }
+      
+        
+      footer {
+        text-align: center;
+        background-color: rgb(237, 185, 87);
+        height: 100px;
+        width: 100%;
+        margin-top: 50px;
+        padding-top: 33px;
+        margin-bottom: 0;
+        box-shadow: 0 3px 10px black;
+        position: fixed;
+        bottom: 0;
+
+      }
+
+      #puu {
+        float: right;
+        margin: 10px 0 20px 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        margin-top: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: rgb(89, 55, 25);
+        border-radius: 20px;
+        box-shadow: 0 3px 10px black;
+      }
+
+      li {
+        float: left;
+        text-align: center;
+        display: block;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li:hover {
+        background-color: #111111;
+      }
+
+      nav {
+        padding-top: 25px;
+        padding-left: 50px;
+        padding-right: 50px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 3;
+      }
+
+      #tere {
+        text-align: center;
+        padding-top: 50px;
+      }
+
+      #mini {
+        background-color: orange;
+        width: 100px;
+        height: 100px;
+        right: 50px;
+        top: -50px;
+        position: absolute;
+        z-index: 2;
+      }
+
+      #mini2 {
+        background-color: red;
+        width: 100px;
+        height: 100px;
+        position: relative;
+        z-index: 1;
+        transition: background-color 3s;
+      }
+
+      #mini2:hover {
+        background-color: blue;
+      }
+
+      /* p::first-letter {
+        font-size: 20px;
+        color: rgb(2, 252, 2);
+      } */
+
+      .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      #target {
+        background-color: darkolivegreen;
+        width: 50%;
+        height: 200px;
+        padding: 20px 20px 20px 20px;
+        margin: 100px 40% 250px 25%;
+        text-align: center;
+      }
+
+      
+    </style>
+  </head>
+
+  <body>
+    <nav class="clearfix">
+      <ul>
+        <li id="logo"><div class="box"><a>PUUMAA</a></div></li>
+        <li><div class="box" id="koti"><a href="">Koti</a></div></li>
+        <li><div class="box" id="apu"><a href="">Miten voimme auttaa?</a></div></li>
+        <li><div class="box" id="yhteystiedot"><a href="">Yhteystiedot</a></div></li>
+      </ul>
+    </nav>
+
+
+
+    <h2 id="tere"> Tervetuloa Puumaahan!</h2>
+    
+    <main>
+      <img id="mini" src="img/minipuu.jpg" alt="minipuu">
+
+        <h2>Yhteystiedot</h2>
+
+        <h3>Meidän tarinamme</h3>
+
+        <img id="puu" src="img/Puu.jpg" alt="Puu">
+
+        <!-- Responsive images and centering -->
+
+        <p>
+          Kauan, kauan sitten eräässä metsässä, joka oli täynnä elämää ja salaisuuksia,
+          tapahtui tarina puista. Kaikki alkaa pienestä siemenestä,
+          joka löysi tiensä pehmeän mullan syvyyksiin.
+        </p>
+
+        <p>
+          Siemen makasi hiljaa ja odotti kärsivällisesti,
+          kun aurinko lämmitti maata ja sade kostutti sen ympärillä olevaa maata.
+          Pian, pieni juuri alkoi kasvaa, etsien tietään kohti valoa.
+          Siitä tuli ensimmäinen vaihe puun elämänkaaressa, pieni itu, joka kasvoi päivä päivältä.
+        </p>
+
+        <p>
+          Nuori puu, 
+          joka oli nyt vain muutaman vuoden vanha, 
+          laajensi juuriaan syvemmälle maahan ja kurotti kohti taivasta. 
+          Se oppi kilpailemaan muiden kasvien kanssa valosta ja ravinteista. 
+          Vuosien mittaan siitä tuli kaunis puu, joka tarjosi suojaa monille eläimille ja lintulajeille. 
+          Puu oli täynnä elämää, ja se kasvoi vahvaksi ja terveeksi.
+        </p>
+
+        <p>
+          Mutta ajan mittaan tuuli ja sää alkoivat vaikuttaa siihen. 
+          Puu menetti muutaman oksan myrskyissä ja sateissa, mutta se ei antanut periksi. 
+          Se kasvoi hitaasti ja vakaasti, ja sen vuosirenkaat kertoivat tarinaa sen elämästä.
+        </p>
+
+        <p>Lopulta päivä koitti, kun puu oli tullut vanhaksi ja heikoksi. 
+          Se oli kokenut monia vuodenaikoja ja nähnyt paljon elämää ympärillään. 
+          Sitten eräänä päivänä, vanhentuneena ja väsyneenä, puu kaatui maahan. 
+          Se oli päättänyt elämänsä metsässä.
+        </p>
+
+        <p>Mutta tämä ei ollut loppu. Puun kaaduttua sen runko alkoi hiljalleen maatua. 
+          Sen aineet hajosivat maahan, ja siitä tuli osa metsän ravintoketjua uudella tavalla. 
+          Puu tarjosi ravinteita ja suojaa sienille, hyönteisille ja monille muille elämänmuodoille. 
+          Se eli jatkossakin, vaikka eri muodossa.
+        </p>
+
+        <p>Ja niin tarina puusta päättyi, mutta samalla se jatkoi elämäänsä osana luonnon suurta pyörrettä. 
+          Se oli osa metsän tarinaa, osa maailman tarinaa, joka jatkoi kiertokulkuaan iankaikkisesti.
+        </p>
+
+    </main>
+    
+    <div id="target">
+      <p id="language"></p>
+      <p id="browser"></p>
+      <p id="size"></p>
+      <p id="time"></p>
+    </div>
+
+
+    <footer>Copyright Mandoliini</footer>
+
+    <script src="Viikko2script.js"></script>
+  </body>
+</html>
