@@ -1,0 +1,405 @@
+
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+  
+    /* color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424; */
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+  }
+  a:hover {
+    color: #535bf2;
+  }
+  
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 16px;
+    background-color: rgb(174, 209, 129);
+    background-image: url(img/lehtitausta.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+    padding: 10px;
+  }
+
+  #intro {
+    background-color: rgb(174, 209, 129, 0.5);
+    border-radius: 10px;
+  }
+
+  h2 {
+    padding: 10px;
+  }
+
+  p {
+    padding: 10px;
+  }
+  
+  button {
+    border-radius: 8px;
+    border: 3px solid transparent;
+    padding: 0.6em 1.2em;
+    margin-top: 1em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    /* background-color: #1a1a1a; */
+    cursor: pointer;
+    transition: border-color 0.42s;
+  }
+  button:hover {
+    border-color: rgb(89, 55, 25);
+    border-style: ridge;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+  /* 
+  @media (prefers-color-scheme: light) {
+    :root {
+      color: #213547;
+      background-color: #ffffff;
+    }
+    a:hover {
+      color: #747bff;
+    }
+    button {
+      background-color: #f9f9f9;
+    }
+  } */
+  
+  h3 {
+    border-bottom: 1px solid rgb(89, 55, 25);
+    margin-top: 50px;
+  }
+  
+  button.del, button.check, button.update {
+    padding: 0.3rem 0.6rem;
+    margin: 0;
+  }
+  
+  button.update {
+    background-color: #f2e49448;
+  }
+  
+  button.del {
+    background-color: #f2a29448;
+  }
+  
+  ::backdrop {
+    background-image: linear-gradient(
+      45deg,
+      magenta,
+      rebeccapurple,
+      dodgerblue,
+      green
+    );
+    opacity: 0.90;
+  }
+
+  #logo {
+
+  }
+  
+
+  #logo.no-hover-effect:hover {
+    background-color: initial;
+  }
+
+  /* Navigaatiolista tyylittely */
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(203, 153, 87);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 3px 10px black;
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  .nav-right {
+    margin-left: auto;
+  }
+  
+  #logout {
+    background-color: rgb(40, 39, 39);
+    color: white;
+    text-decoration: none;
+  }
+
+  #logout:hover {
+    background-color: rgb(89, 55, 25);
+  }
+  
+
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    color: white;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: rgb(89, 55, 25);
+    cursor: pointer;
+  }
+  
+  .active {
+    background-color: black;
+  }
+
+  /* Modal-ikkunan perustyylit */
+.modal {
+  display: none; /* Piilotettu oletusarvoisesti */
+  position: fixed; /* Pysyy paikoillaan scrollatessa */
+  z-index: 1; /* Sijoitetaan sisällön päälle */
+  top: 0;
+  width: 100%; /* Leveys */
+  height: 100%; /* Korkeus */
+  overflow: auto; /* Mahdollistaa scrollauksen */
+  background-color: rgb(0,0,0); /* Taustaväri */
+  background-color: rgba(0,0,0,0.4); /* Taustaväri, hieman läpinäkyvä */
+  z-index: 2;
+}
+
+.modal-content {
+  margin: 15% auto; /* Vähennä ylä- ja alamarginaalia tarvittaessa */
+  width: auto; /* Aseta auto tai konkreettinen pienempi leveys */
+  padding: 20px;
+  max-width: 400px; /* Aseta maksimileveys sopivaksi */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  
+}
+
+.modal-content label,
+.modal-content input,
+.modal-content textarea,
+.modal-content button {
+    margin-bottom: 10px; /* Lisää tilaa elementtien välille */
+    width: 100%; /* Asettaa elementit täyttämään vanhempansa leveyden */
+}
+
+.modal-content label {
+    margin-top: 10px; /* Lisää tilaa label-elementtien yläpuolelle */
+}
+
+.updateEntry {
+    cursor: pointer; /* Muuttaa hiiren osoittimen käsiksi, kun se on päällä */
+}
+
+.close {
+  position: absolute;
+  padding: 25px;
+  right: 65px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+#createUserModal {
+  display: none;
+}
+
+
+  #taustakuva {
+    width: 100%;
+    height: 400px;
+    background-color: aliceblue;
+    background-image: url(img/maisema.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 3px 10px black;
+    position: relative;
+  }
+
+  #minikuva {
+    position: absolute;
+    top: 310px;
+    right: 950px; 
+    width: 100px;
+    height: 100px; 
+    background-image: url('img/result.png'); /* Korvaa 'pienenKuvanURL' kuvan osoitteella */
+    background-size: cover;
+    z-index: 2; /* Varmista, että pienempi kuva on taustakuvan päällä */
+  }
+
+  
+  /* Käyttäjä loggaantunut tyylittely */
+  .user {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  #name {
+    font-weight: bolder;
+  }
+  
+  /* Taulukon tyylittey */
+  /* https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l */
+  
+  .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    border-radius: 10px;
+
+  }
+  
+  .styled-table thead tr {
+    background-color: rgb(89, 55, 25);
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  .styled-table th,
+  .styled-table td {
+      padding: 12px 15px;
+  }
+  
+  .styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid rgb(89, 55, 25);
+  }
+  .styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+  }
+  
+  .styled-table tbody tr:hover {
+    background-color: #68535358;
+    cursor: pointer;
+  }
+  .forms {
+    display: flex; 
+    gap: 30px;
+  }
+  
+  /* Formin tyylittely */
+  form {
+    background-color: rgb(89, 55, 25, 0.90);
+    color: #ffffff;
+    padding: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    width: 300px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+  }
+  /* Input kenttien tyylittely */
+  input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  
+
+  #loginResponse, #meResponse {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: smaller;
+    display: block;
+    width: 100%;
+    word-break:break-all;
+  }
+
+  .container {
+    height: 55vh;
+    display: flex;
+    border-radius: 10px;
+  }
+  
+
+  .box {
+    color: aliceblue;
+    background-color: rgb(174, 209, 129, 0.5);
+  }
+
+  #left {
+    background-color: white;
+    color: black;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #right {
+    background-color: rgba(255, 166, 0, 0.708);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #upper {
+    flex: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  #lower {
+    background-color: rgba(38, 120, 242, 0.77);
+    flex: 65%;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+
+  @media screen and (max-width: 816px) {
+    #meditation {
+      display: none;
+    }
+  }
