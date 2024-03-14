@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script type="module" crossorigin src="/assets/home-SANucQnT.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/fetch--FzvIhyn.js">
+    <link rel="stylesheet" crossorigin href="/assets/fetch-fICU9s_e.css">
+  </head>
+  <body>
+    <nav class="clearfix">
+      <ul>
+        <li id="logo"><div class="box"><a href="home.html">HealthDiary</a></div></li>
+        <li><div class="box" id="yhteystiedot"><a href="diary.html">Päiväkirja</a></div></li>
+        <div class="nav-right">
+          <li><div class="box" id="logout"><a href="index.html">Kirjaudu ulos</a></div></li>
+        </div>
+
+
+      </ul>
+      <div id="taustakuva">
+        <div id="minikuva"></div>
+    </nav>
+
+    <!-- <div id="app"></div> -->
+
+    <div class="user">Hei kirjautunut käyttäjä: <span id="name">NIMI TÄHÄN</span>!</div>
+
+
+
+    <div class="forms">
+      <div style="flex: 1">
+        <h3>Hae kaikkien käyttäjien tiedot</h3>
+
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>User Level</th>
+              <th>Info</th>
+              <th>Delete</th>
+              <th>ID</th>
+            </tr>
+          </thead> 
+          <tbody class="tbody">
+            <!-- tänne haetaan kaikki käyttäjät -->
+            <!-- # Get all users -->
+            <!-- GET http://127.0.0.1:3000/api/users -->
+          </tbody>
+        </table>
+
+        <button class="get_users">Hae users tiedot</button>
+      </div>
+      <div style="flex: 1">
+        <h3>PUT and FORMS</h3>
+
+        <p>
+          Lisää ja päivitä käyttäjiä eli users tiedot formin avulla. Formi lisää uuden käyttäjän
+          nappulasta 'post'. Huomio, että PUT metodi toimii vain kirjatuneen käyttäjän osalta. Eli voit vain muokata käyttäjää, millä olet parhaimmillaan kirjautuneena. Jatkossa olisi fiksua hakea käyttäjän tiedot suoraan formien INPUT kenttiin.
+        </p>
+
+        <form class="addform">
+          <!-- tänne formi -->
+          <!-- https://www.w3schools.com/css/css_form.asp -->
+          <!-- https://www.w3schools.com/css/tryit.asp?filename=trycss_form_padding -->
+
+          <!-- formin avulla testaamme create ja update user reittejä -->
+        </form>
+      </div>
+    </div>
+
+    <dialog class="info_dialog">
+      <p>
+        <!-- tänne haetaan yksittäinen valittu käyttäjät -->      
+        <div>UserID: <span>Id</span></div>
+        <div>UserName: <span>Username</span></div>
+        <div>Email: <span>Email</span></div>
+        <div>Role: <span>Role</span></div> 
+      </p>
+      <button autofocus>Close</button>
+    </dialog>
+
+    <h3>Kotitehtävä, tee ja testaa kaikki: /api/entries</h3>
+
+    <p>Hae käyttäjän (user: 1) entires tiedot ja console.log</p>
+    <pre>
+      # Get entries by id
+      GET http://localhost:3000/api/entries/:id
+    </pre>
+    <button class="get_entry">Hae (user:1) entries</button>
+
+
+  </body>
+</html>

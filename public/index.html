@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Index</title>
+    <script type="module" crossorigin src="/assets/main-R2UTqP61.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/fetch--FzvIhyn.js">
+    <link rel="stylesheet" crossorigin href="/assets/fetch-fICU9s_e.css">
+  </head>
+
+    <nav class="clearfix">
+      <ul>
+        <li id="logo"><div class="box"><a>HealthDiary</a></div></li>
+        <div class="nav-right"></div>
+        <!-- Käyttäjän luonti -modal-->
+          <li><div class="box" id="create_user"><a>Luo käyttäjä</a></div></li>
+            <div id="createUserModal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <form id="create_user_form">
+                  <label for="username">Username</label>
+                  <input type="text" name="username" placeholder="Käyttäjänimi" />
+                  <label for="password">Password</label>
+                  <input type="password" name="password" placeholder="Salasana" />
+                  <label for="email">Email</label>
+                  <input type="email" name="email" placeholder="Sposti" />
+                  <input name="submit" type="submit" value="Luo käyttäjä" class="createuser" />
+                </form>
+              </div>
+            </div>
+          <li><div class="box" id="login"><a>Kirjaudu sisään</a></div></li>
+          <!-- Kirjautumis-modal -->
+            <div id="loginModal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <form id="login_form">
+                  <label for="username">Käyttäjätunnus:</label>
+                  <input type="text" id="username" name="username" placeholder="testeri">
+                  <label for="password">Salasana:</label>
+                  <input type="password" id="password" name="password" placeholder="testeri1">
+                  <input type="submit" type="submit" value="Kirjaudu sisään" class="loginuser"></input>
+                </form>
+              </div>
+            </div>
+        </div>
+      </ul>
+      <div id="taustakuva">
+        <div id="minikuva"></div>
+    </nav>
+
+
+
+  <body>
+    <div id="intro">
+      <h1> Tervetuloa HealthDiaryyn! </h1>
+      <h2>Mikä on homman nimi?</h2>
+      <p>Tervetuloa HealthDiaryyn, leikkisään ja inspiroivaan paikkaan,
+        jossa terveyden seuraaminen muuttuu seikkailuksi! Eikö olisikin mahtavaa, 
+        jos voisit pitää kirjaa hyvinvointisi matkasta yhtä helposti kuin päivittäisit statuspäivitystäsi? 
+        Me teimme sen mahdolliseksi! Täällä HealthDiaryssa voit luoda omia päiväkirjamerkintöjäsi, 
+        seurata edistymistäsi ja löytää iloa jokaisesta pienestä askeleesta terveempään elämään. 
+        Olitpa sitten intohimoinen wellness-guru tai vasta aloittelemassa terveysmatkaasi, 
+        meidän tehtävämme on tehdä prosessista hauskaa, helppoa ja ennen kaikkea hyödyllistä. 
+        Liity joukkoomme, ja aloitetaan yhdessä tämä jännittävä matka kohti parempaa hyvinvointia!</p>
+    </div>
+
+    <div class="container">
+      <div class="box" id="left">
+        <div class="card">
+          <img id="mediation" src="/assets/meditation1-D5lAysPG.jpeg" alt="puu">
+        </div>
+      </div>
+      <div class="box" id="right">
+        <div id="upper">
+          <h2></h2>
+        </div>
+        <div id="lower"> ALEMPI</div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

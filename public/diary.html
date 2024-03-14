@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Päiväkirja</title>
+    <script type="module" crossorigin src="/assets/diary-h8oeiG0-.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/fetch--FzvIhyn.js">
+    <link rel="stylesheet" crossorigin href="/assets/fetch-fICU9s_e.css">
+  </head>
+  <body>
+    <nav class="clearfix">
+      <ul>
+        <li id="logo"><div class="box"><a href="home.html">HealthDiary</a></div></li>
+        <li><div class="box" id="yhteystiedot"><a href="diary.html">Päiväkirja</a></div></li>
+        <div class="nav-right">
+          <li><div class="box" id="logout"><a href="index.html">Kirjaudu ulos</a></div></li>
+        </div>
+
+
+      </ul>
+      <div id="taustakuva">
+        <div id="minikuva"></div>
+    </nav>
+
+    <!-- <div id="app"></div> -->
+
+    <div class="user">Hei kirjautunut käyttäjä: <span id="name">NIMI TÄHÄN</span>!</div>
+
+      </div>
+
+        <h3>PUT and FORMS</h3>
+        <div id="editEntryModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form id="editEntryForm">
+                    <label for="editDate">Päivämäärä:</label>
+                    <input type="date" id="editDate" name="editDate">
+
+                    <label for="editMood">Mieliala</label>
+                    <input type="text" id="editMood" name="editMood">
+
+                    <label for="editWeight">Paino:</label>
+                    <input type="number" id="editWeight" name="editWeight">
+
+                    <label for="editSleep">Unen määrä (h):</label>
+                    <input type="number" id="editSleep" name="editSleep">
+
+                    <label for="editEntry">Muistiinpanot:</label>
+                    <input type="text" id="editEntry" name="editEntry"></textarea>
+
+                    <input type="hidden" id="entryId" name="entryId">
+                    <button type="submit" class="updateEntry">Tallenna muutokset</button>
+                </form>
+            </div>
+        </div>
+
+        <h3>Päiväkirjamerkinnät</h3>
+
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Päivämäärä</th>
+              <th>Mieliala</th>
+              <th>Paino</th>
+              <th>Nukuttuja tunteja</th>
+              <th>Merkintä</th>
+              <th>Poista</th>
+              <th>Muokkaa</th>
+            </tr>
+          </thead> 
+          <tbody class="tbody">
+            <!-- tänne haetaan kaikki käyttäjät -->
+            <!-- # Get all users -->
+            <!-- GET http://127.0.0.1:3000/api/users -->
+          </tbody>
+        </table>
+      </div>
+
+
+
+  </body>
+</html>
