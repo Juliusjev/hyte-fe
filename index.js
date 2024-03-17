@@ -1,27 +1,51 @@
 import './style.css';
 import { fetchData } from './fetch.js';
 
-// Haetaan nappi, joka avaa käyttäjän luomis-modalin
-const openCreateUserModal = document.getElementById('create_user');
+
+// Luodaan modalit
+const loginModal = document.getElementById('loginModal');
 const createUserModal = document.getElementById('createUserModal');
+
+// Haetaan modaleille napit
+const openLoginModal = document.getElementById('login');
+const openCreateUserModal = document.getElementById('create_user');
+
+// Haetaan modaleille sulkemisnapit
+const closeLoginModal = loginModal.querySelector('.close');
 const closeCreateUser = createUserModal.querySelector('.close');
 
-// Kun käyttäjä klikkaa "Luo käyttäjä" -linkkiä, modal avautuu
+// Modaleiden avaus
+openLoginModal.addEventListener('click', () => {
+  loginModal.style.display = 'block';
+});
+
 openCreateUserModal.addEventListener('click', () => {
   createUserModal.style.display = 'block';
 });
 
-// Kun käyttäjä klikkaa sulje ("x") -painiketta, modal sulkeutuu
+// Modaleiden sulku napista
+closeLoginModal.addEventListener('click', () => {
+  loginModal.style.display = 'none';
+});
+
 closeCreateUser.addEventListener('click', () => {
   createUserModal.style.display = 'none';
 });
 
-// Kun käyttäjä klikkaa modalin ulkopuolelle, modal sulkeutuu
+
+// Modaleiden sulku ikkunasta ulosklikkaamalla
 window.addEventListener('click', (event) => {
-  if (event.target == createUserModal) {
+  if (event.target === loginModal) {
+    loginModal.style.display = 'none';
+  }
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === createUserModal) {
     createUserModal.style.display = 'none';
   }
 });
+
 
 // Haetaan nappi ja lomake käyttäjän luomiseen modalista
 const createUser = createUserModal.querySelector('.createuser');
@@ -56,8 +80,7 @@ createUser.addEventListener('click', async (evt) => {
 });
 
 
-// haetaan nappi josta haetaan formi ja logataan sisään
-// tästä saadaan TOKEN
+// Haetaan nappi ja lomake käyttäjän kirjautumiseen modalista
 const loginUser = document.querySelector('.loginuser');
 
 loginUser.addEventListener('click', async (evt) => {
@@ -73,106 +96,37 @@ loginUser.addEventListener('click', async (evt) => {
   };
 
   const options = {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    method: "POST", 
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
+    body: JSON.stringify(data), 
   }
-  
-  fetchData(url, options).then((data) => {
-    console.log(data);
-    console.log(data.token);
+  try {
+    const response = await fetch(url, options);
+    const responseData = await response.json();
 
-    // asetetaan token local storageen nimellä "token", löytyy application-välilehdeltä
-    localStorage.setItem('token', data.token);
-
-    // Tässä oikeasti kannattaa tehdä niin, että fetch.js ottaa validointivirheen joka käsitellään
-    if (data.token == undefined) {
-      alert('Unauthorized user: käyttäjänimi tai salasana ei täsmää');
-    } else {
-      alert('Olet nyt kirjautunut');
-      localStorage.setItem('username', data.user.username);
-      localStorage.setItem('user_id', data.user.user_id);
-      window.location.href = 'home.html';
+    if (!response.ok) {
+      // Jos vastauksen status-koodi ei ole OK, heitetään virhe
+      throw new Error(responseData.message || 'Unauthorized user: käyttäjänimi tai salasana ei täsmää');
     }
 
-    logResponse('loginResponse', `localStorage set with token value: ${data.token}`);
-
-  });
+    console.log(responseData);
+    localStorage.setItem('token', responseData.token);
+    localStorage.setItem('username', responseData.user.username);
+    localStorage.setItem('user_id', responseData.user.user_id);
+    alert('Olet nyt kirjautunut');
+    window.location.href = 'home.html';
+  } catch (error) {
+    console.error('Login error:', error);
+    alert(error.message);
+  }
 });
 
-// Haetaan modal
-const loginModal = document.getElementById('loginModal');
-
-// Haetaan linkki, joka avaa modalin
-const loginLink = document.getElementById('login');
-
-// Haetaan <span> elementti, joka sulkee modalin
-const closeLoginBtn = loginModal.querySelector('.close');
-
-// Kun käyttäjä klikkaa linkkiä, modal avautuu
-loginLink.onclick = function() {
-  loginModal.style.display = "block";
-}
-
-// Kun käyttäjä klikkaa "x", modal sulkeutuu
-closeLoginBtn.onclick = function() {
-  loginModal.style.display = "none";
-}
-
-// Kun käyttäjä klikkaa modalin ulkopuolelle, se sulkeutuu
-window.onclick = function(event) {
-  if (event.target == loginModal) {
-    loginModal.style.display = "none";
-  }
-}
-// Haetaan nappi josta tyhjennetään localStorage
-// const clear = document.querySelector('#clearButton');
-// clear.addEventListener('click', clearLocalStorage);
-
-// Apufunktio, kirjoittaa halutin koodiblokin sisään halutun tekstin
-function logResponse(codeblock, text) {
-  document.getElementById(codeblock).innerText = text;
-}
-
-
-// // Haetaan nappi josta testataan TOKENIN käyttöä, /auth/me
-// // const meRequest = document.querySelector('#meRequest');
-// // meRequest.addEventListener('click', async () => {
-// //   console.log('Testataan TOKENIA ja haetaan käyttäjän tiedot');
-
-//   // # Get user info by token (requires token)
-//   //       GET http://localhost:3000/api/auth/me
-//   //       Authorization: Bearer (put-user-token-here)
-
-//   const url = 'http://localhost:3000/api/auth/me';
-//   const token = localStorage.getItem('token');
-//   console.log('Aktiivinen token: ', token);
-
-//   const options = {
-//     method: "GET", // *GET, POST, PUT, DELETE, etc.
-//     headers: {
-//       Authorization: 'Bearer: ' + token,
-//     },
-//   };
-
-//   console.log(options);
-  
-//   fetchData(url, options).then((data) => {
-//   console.log(data);
-//   logResponse('meResponse', `Authorized user info: ${JSON.stringify(data)}`);
-//   });
-
-// });
 
 
 
-// Apufunktio, Tyhjennä local storage
-function clearLocalStorage() {
-  localStorage.removeItem('token');
-  logResponse('clearResponse', 'localStorage cleared!');
-}
+
 
 
 

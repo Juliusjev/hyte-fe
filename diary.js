@@ -1,16 +1,9 @@
 import './style.css';
 import { fetchData } from './fetch.js';
 
-showUsername(); 
-document.addEventListener('DOMContentLoaded', function() {
-    getEntryById();
-});
 
 
-
-const entryButton = document.querySelector('.get_entry');
-entryButton.addEventListener('click', getEntryById);
-
+// Haetaan kirjautuneen käyttäjän merkinnät
 async function getEntryById() {
   console.log('Haetaan kaikki käyttäjän merkinnät tietokannasta')
   const user_id = localStorage.getItem('user_id');
@@ -24,23 +17,28 @@ async function getEntryById() {
   };
 
   fetchData(url, options).then((data) => {
+    //Annetaan data createTable-funktion käsiteltäväksi
     createTable(data);
   });
 }
 
+
+// Luodaan taulukko getEntryById:n datalla
 function createTable(data) {
-  console.log(data);
 
   // etsitään tbody -elementti
   const tbody = document.querySelector('.tbody');
   tbody.innerHTML = '';
 
+  const modal = document.getElementById("editEntryModal");
+
+  // Käännetään datan järjestys ja 
+  // puretaan se loogisemmassa järjestyksessä
+  const reversedData = data.reverse();
 
 // luodaan jokaiselle tietoriville oikeat elementit
 // elementtien sisään pistetään oikeat tiedot
-  data.forEach((element) => {
-    console.log(
-      element.entry_date, element.user_id, element.user_level);
+  reversedData.forEach((elnoement) => {
 
     // Luodaan jokaiselle riville ensin TR elementti 
     const tr = document.createElement('tr');
@@ -91,16 +89,26 @@ function createTable(data) {
     tr.appendChild(td6);
     tbody.appendChild(tr);
   });
+
+  // Haetaan <span> elementti, joka sulkee modalin
+const closeBtn = document.querySelector('.close');
+
+closeBtn.addEventListener('click', () => {
+  modal.style.display = "none";
+})
+
+// Kun käyttäjä klikkaa modalin ulkopuolelle, se sulkeutuu
+window.onclick = function(event) {
+  if (event.target == modal) {
+      modal.style.display = "none";
+  }
 }
 
 
-// Get the modal
-const modal = document.getElementById("editEntryModal");
+}
 
-// Get the <span> element that closes the modal
-const span = document.querySelector('.close');
 
-// When the user clicks the button, open the modal 
+// Kun käyttäjä klikkaa "muokkaa", avataan Modal
 function showModal(element) {
     document.getElementById('editDate').value = new Date(element.entry_date).toISOString().split('T')[0]; 
     document.getElementById('editMood').value = element.mood;
@@ -114,19 +122,55 @@ function showModal(element) {
     modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
+
+
+// Haetaan nappi uuden merkinnän luomiseen
+document.getElementById('entryForm').addEventListener('submit', createEntry);
+
+
+// Funktio joka luo merkinnän 
+function createEntry(evt) {
+  evt.preventDefault();
+
+  console.log(evt);
+
+  const url = `http://127.0.0.1:3000/api/entries/`;
+  let token = localStorage.getItem('token');
+
+  const newEntryDate = document.getElementById('setDate').value;
+  const newMood = document.getElementById('setMood').value;
+  const newWeight = document.getElementById('setWeight').value;
+  const newSleep = document.getElementById('setSleep').value;
+  const newEntry = document.getElementById('setEntry').value;
+
+  const options = {
+      method: 'POST',
+      headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+          entry_date: newEntryDate, 
+          mood: newMood, 
+          weight: newWeight,
+          sleep_hours: newSleep, 
+          notes: newEntry}),
+  };
+
+  fetchData(url, options).then((data) => {
+      console.log(data);
+      alert('Merkinnän lisäys onnistunut!');
+      document.getElementById('setDate').value = '';
+      document.getElementById('setMood').value = '';
+      document.getElementById('setWeight').value = '';
+      document.getElementById('setSleep').value = '';
+      document.getElementById('setEntry').value = '';
+      getEntryById();
+  });
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
 
-
+// Merkinnän päivitys
 function updateEntry(evt) {
     evt.preventDefault();
     console.log('Päivitetään merkintä');
@@ -166,6 +210,8 @@ function updateEntry(evt) {
     });
 }
 
+
+// Merkinnän poisto
 function deleteEntry(evt) {
     console.log(evt);
     const entry_id = evt.target.attributes['data-id'].value;
@@ -181,6 +227,7 @@ function deleteEntry(evt) {
     //Varmistetaan päiväkirjamerkinnän poisto
     const answer = confirm('Haluatko varmasti poistaa merkinnän?')
     if (answer) {
+      console.log("Poisto onnistunut")
       fetchData(url, options).then((data) => {
         console.log(data);
         getEntryById();
@@ -188,16 +235,10 @@ function deleteEntry(evt) {
     }
   }
   
-
+// Haetaan käyttäjän nimi tervehtimistä varten
 function showUsername() {
   console.log('Hei, täällä ollaan!');
-  // Vaihtoehto 1: localStorageen tallennettu 'username' haetaan ja esitetään käyttäjälle
-  // let name = localStorage.getItem('username');
-  // console.log('Nimesi on: ', name)
-  // document.getElementById('name').innerHTML = name;
-
-  // Vaihtoehto 2: käytetään tokenia ja haetaan tietokannasta (/api/auth/me polku) käyttäjän tiedot
-  const url = 'http://localhost:3000/api/auth/me';
+  const url = 'http://127.0.0.1:3000/api/auth/me';
   let token = localStorage.getItem('token');
   const options = {
     method: 'GET',
@@ -206,22 +247,25 @@ function showUsername() {
     },
   }
   fetchData(url, options).then((data) => {
-    console.log(data);
     document.getElementById('name').innerHTML = data.user.username;
   });
 }
 
 
-
+// Uloskirjautuminen
 document.getElementById('logout').addEventListener('click', function() {
-  // Poistaa tokenin ja käyttäjänimen local storagesta
-  alert('Kirjauduttu ulos')
-  localStorage.removeItem('token');
-  localStorage.removeItem('username');
+  const answer = confirm('Haluatko varmasti kirjautua ulos?')
+  if (answer) {
+      // Poistaa tokenin local storagesta
+    alert('Kirjauduttu ulos onnistuneesti! ')
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
 
-  // Siirtää käyttäjän index.html-sivulle
-  window.location.href = 'index.html';
+    // Siirtää käyttäjän index.html-sivulle
+    window.location.href = 'index.html';
+    }
 });
+
 
 showUsername(); 
 document.addEventListener('DOMContentLoaded', function() {

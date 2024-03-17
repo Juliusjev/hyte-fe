@@ -10,6 +10,8 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         home: resolve(__dirname, 'home.html'),
         diary: resolve(__dirname, 'diary.html'),
+        exerciselog: resolve(__dirname, 'exerciselog.html'),
+        users: resolve(__dirname, 'users.html')
       },
     },
   },
