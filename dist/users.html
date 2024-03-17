@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Käyttäjät</title>
+    <script type="module" crossorigin src="/assets/users-ZwQ4LOAX.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/fetch-ZdQQvvGr.js">
+    <link rel="stylesheet" crossorigin href="/assets/fetch-uHSDN4ac.css">
+  </head>
+  <body>
+    <nav class="clearfix">
+      <ul id="navi">
+        <li id="logo"><div class="box"><a href="home.html">HealthDiary</a></div></li>
+        <li><div class="box" id="diary"><a href="diary.html">Päiväkirja</a></div></li>
+        <li><div class="box" id="exerciselog"><a href="exerciselog.html">Harjoitukset</a></div></li>
+        <li><div class="box" id="users" style="background-color: rgb(89, 55, 25, 0.7)"><a href="users.html">Käyttäjät</a></div></li>
+        <div class="nav-right">
+          <li><div class="box" id="logout"><a href="index.html">Kirjaudu ulos</a></div></li>
+        </div>
+
+
+      </ul>
+      <div id="taustakuva">
+        <div id="minikuva"></div>
+    </nav>
+
+    <!-- <div id="app"></div> -->
+
+    <div class="user">Tervetuloa käyttäjätietojen hallintaan <span id="name">NIMI TÄHÄN</span>!</div>
+
+    <div class="forms">
+      <div style="flex: 1">
+        <h3>Hae kaikkien käyttäjien tiedot</h3>
+        <div id="tableContainer">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Käyttäjänimi</th>
+                <th>Sähköposti</th>
+                <th>Käyttäjätaso</th>
+                <th>Muokkaa</th>
+                <th>Poista</th>
+                <th>ID</th>
+              </tr>
+            </thead> 
+            <tbody class="tbody">
+            </tbody>
+          </table>
+        </div>
+        <button class="get_users">Hae käyttäjät</button>
+      </div>
+
+      <div id="editWin" style="flex: 1">
+        <h3>Muokkaa käyttäjätietoja</h3>
+        <p>
+          Hae käyttäjät, jotta pääset muokkaamaan omia tietojasi.
+
+          Huomioi, että voit muokata vain omia tietojasi.
+        </p>
+        <form id="editUserForm" style="display: none;">
+          Käyttäjänimi: <input type="text" id="newUsername">
+          Salasana: <input type="password" id="newPassword">
+          Sähköposti: <input type="email" id="newEmail">
+          <input type="hidden" id="userId">
+          <button id="editUser" type="submit">Päivitä tiedot</button>
+          <button type="button" onclick="document.getElementById('editUserForm')
+          .style.display='none'">Sulje</button>
+
+        </form>
+      </div>
+    </div>
+
+    <h3>Top 5 - Aktiivisimmat käyttäjät</h3>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Käyttäjänimi</th>
+          <th>Päiväkirjamerkintöjen määrä</th>
+          <th>Harjoitusten määrä</th>
+          <th>Merkintöjä yhteensä</th>
+          <th>Sijoitus</th>
+        </tr>
+      </thead> 
+      <tbody class="topbody">
+      </tbody>
+    </table>
+
+
+  </body>
+</html>

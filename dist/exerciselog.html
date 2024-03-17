@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harjoituspäiväkirja</title>
+    <script type="module" crossorigin src="/assets/exerciselog-KMtQajE-.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/fetch-ZdQQvvGr.js">
+    <link rel="stylesheet" crossorigin href="/assets/fetch-uHSDN4ac.css">
+  </head>
+  <body>
+    <nav class="clearfix">
+      <ul id="navi">
+        <li id="logo"><div class="box"><a href="home.html">HealthDiary</a></div></li>
+        <li><div class="box" id="diary"><a href="diary.html">Päiväkirja</a></div></li>
+        <li><div class="box" id="exerciselog" style="background-color:rgb(89, 55, 25, 0.7);"><a href="exerciselog.html">Harjoitukset</a></div></li>
+        <li><div class="box" id="users"><a href="users.html">Käyttäjät</a></div></li>
+
+        <div class="nav-right">
+          <li><div class="box" id="logout"><a href="index.html">Kirjaudu ulos</a></div></li>
+        </div>
+
+
+      </ul>
+      <div id="taustakuva">
+        <div id="minikuva"></div>
+    </nav>
+
+    <!-- <div id="app"></div> -->
+
+    <div class="user">Tervetuloa harjoitusten pariin <span id="name">NIMI TÄHÄN</span>!</div>
+
+    <div class="flex-container">
+
+      <div class="form-container">
+
+        <h3>Kirjaa uusi harjoitus</h3>
+        <form id="exerciseForm">
+          <label for="setDate">Päivämäärä:</label>
+          <input type="date" id="setDate" name="setDate" required><br>
+
+          <label for="setActivity">Aktiviteetti:</label>
+          <input type="text" id="setActivity" name="setActivity" required><br>
+        
+        
+          <label for="setIntensity">Intensiteetti:</label>
+          <select id="setIntensity" name="setIntensity" required>
+            <option value="" disabled selected>Valitse</option>
+            <option value="High">Kova</option>
+            <option value="Medium">Keskiverto</option>
+            <option value="Low">Matala</option>
+          </select><br>
+        
+          <label for="setDuration">Harjoituksen kesto:</label>
+          <input type="time" id="setDuration" name="setDuration" step="60" required><br>
+
+          <button type="submit">Lisää merkintä</button>
+        </form>
+      </div>
+
+        <div id="wisdom-container">
+          <img src="/assets/wellness_wheel-c_gLWPz2.png">
+        </div>
+      </div>
+    </div>
+
+        <h3>Harjoitteluhistoria</h3>
+
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Päivämäärä</th>
+              <th>Aktiviteetti</th>
+              <th>Intensiteetti</th>
+              <th>Harjoituksen kesto</th>
+              <th>Muokkaa</th>
+              <th>Poista</th>
+            </tr>
+          </thead> 
+          <tbody class="tbody">
+            <!-- tänne haetaan kaikki käyttäjät -->
+            <!-- # Get all users -->
+            <!-- GET http://127.0.0.1:3000/api/users -->
+          </tbody>
+        </table>
+        <div id="editExerciseModal" class="modal">
+          <div class="modal-content">
+              <span class="close">&times;</span>
+              <form id="editExerciseForm">
+                  <label for="editDate">Päivämäärä:</label>
+                  <input type="date" id="editDate" name="editDate">
+
+                  <label for="editActivity">Aktiviteetti:</label>
+                  <input type="text" id="editActivity" name="editActivity">
+
+                  <label for="editIntensity">Intensiteetti:</label>
+                  <select id="editIntensity" name="editIntensity">
+                    <option value="" disabled selected>Valitse</option>
+                    <option value="High">Kova</option>
+                    <option value="Medium">Keskiverto</option>
+                    <option value="Low">Matala</option>
+                  </select><br>
+
+                  <label for="editDuration">Harjoituksen kesto:</label>
+                  <input type="time" id="editDuration" name="editDuration" step="60">
+
+                  <input type="hidden" id="exerciseId" name="exerciseId">
+                  <button type="submit" class="updateExercise">Tallenna muutokset</button>
+              </form>
+          </div>
+      </div>
+    </div>
+
+
+
+  </body>
+</html>

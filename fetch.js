@@ -7,20 +7,19 @@
  * @returns {Object} response json data
  */
 const fetchData = async (url, options = {}) => {
-    let jsonData;
-    try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-      }
-  
-      jsonData = await response.json();
-    } catch (error) {
-      console.error('fetchData() error', error);
-      jsonData = {};
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      // Heittää virheen, joka sisältää sekä HTTP-statukoodin että statusviestin
+      throw new Error(`HTTP ${response.status} - ${response.statusText}`);
     }
-    //console.log(jsonData);
+    const jsonData = await response.json();
     return jsonData;
-  };
-  
-  export { fetchData };
+  } catch (error) {
+    // Logataan virhe konsoliin ja heitetään virhe eteenpäin
+    console.error('fetchData() error', error);
+    throw error; // Heittää virheen eteenpäin kutsuvalle funktiolle
+  }
+};
+
+export { fetchData };

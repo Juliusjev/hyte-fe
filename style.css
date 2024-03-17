@@ -23,30 +23,39 @@
     text-decoration: inherit;
   }
   a:hover {
-    color: #535bf2;
+    background-color: transparent;
+
   }
   
   body {
+    height: 100%;
     min-width: 320px;
     min-height: 100vh;
-    margin: 16px;
+    margin: 20px;
     background-color: rgb(174, 209, 129);
     background-image: url(img/lehtitausta.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
+    padding-bottom: 300px;
   }
   
   h1 {
     font-size: 3.2em;
     line-height: 1.1;
-    padding: 10px;
+    text-align: center;
+    margin-bottom: 0;
   }
 
   #intro {
-    background-color: rgb(174, 209, 129, 0.5);
+    background-color: rgb(174, 209, 129, 0.6);
     border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 3px 10px black;
   }
 
   h2 {
@@ -96,7 +105,7 @@
     margin-top: 50px;
   }
   
-  button.del, button.check, button.update {
+  button.del, button.check, button.update, button.mod {
     padding: 0.3rem 0.6rem;
     margin: 0;
   }
@@ -120,17 +129,13 @@
     opacity: 0.90;
   }
 
-  #logo {
-
-  }
-  
 
   #logo.no-hover-effect:hover {
     background-color: initial;
   }
 
   /* Navigaatiolista tyylittely */
-  ul {
+  #navi {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -183,14 +188,13 @@
 .modal {
   display: none; /* Piilotettu oletusarvoisesti */
   position: fixed; /* Pysyy paikoillaan scrollatessa */
-  z-index: 1; /* Sijoitetaan sisällön päälle */
   top: 0;
   width: 100%; /* Leveys */
   height: 100%; /* Korkeus */
   overflow: auto; /* Mahdollistaa scrollauksen */
   background-color: rgb(0,0,0); /* Taustaväri */
   background-color: rgba(0,0,0,0.4); /* Taustaväri, hieman läpinäkyvä */
-  z-index: 2;
+  z-index: 100;
 }
 
 .modal-content {
@@ -201,6 +205,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  z-index: 100;
   
 }
 
@@ -222,10 +227,11 @@
 
 .close {
   position: absolute;
-  padding: 25px;
+  margin: 25px;
+  /* padding: 25px; */
   right: 65px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 1000;
 }
 
 #createUserModal {
@@ -257,6 +263,19 @@
     background-image: url('img/result.png'); /* Korvaa 'pienenKuvanURL' kuvan osoitteella */
     background-size: cover;
     z-index: 2; /* Varmista, että pienempi kuva on taustakuvan päällä */
+  }
+
+  @media (max-width: 1100px) {
+    #minikuva {
+      bottom: 50%;
+      left: 1%;
+    }
+  }
+
+  @media (max-width: 660px) {
+    .flex-container {
+      flex-direction: column;
+    }
   }
 
   
@@ -295,6 +314,8 @@
   .styled-table th,
   .styled-table td {
       padding: 12px 15px;
+      text-align: center;
+      justify-content: center;
   }
   
   .styled-table tbody tr {
@@ -302,11 +323,14 @@
   }
   
   .styled-table tbody tr:nth-of-type(even) {
+    background-color: rgb(89, 55, 25, 0.7);
+  }
+  .styled-table tbody tr:nth-of-type(odd) {
     background-color: #f3f3f3;
   }
   
   .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid rgb(89, 55, 25);
+    border-bottom: 2px solid rgb(89, 55, 25. 0.7);
   }
   .styled-table tbody tr.active-row {
     font-weight: bold;
@@ -333,7 +357,7 @@
     width: 300px;
     font-size: 0.9em;
     font-family: sans-serif;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px black;
     border-radius: 10px;
   }
   /* Input kenttien tyylittely */
@@ -343,8 +367,69 @@
     margin: 8px 0;
     box-sizing: border-box;
   }
-  
 
+  #exerciseForm,
+  #entryForm {
+    width: 100%;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 8px; 
+  }
+
+  #setDate {
+    margin-bottom: 10px;
+  }
+
+  #setIntensity {
+    margin-bottom: 10px;
+  }
+  
+  /* Label- ja input-elementtien tyyli */
+form#exerciseForm label,
+form#entryForm label {
+  display: block; /* Tehdään label-elementistä lohkoelementti */
+  margin-bottom: 10px; /* Lisätään marginaalia label-elementin ja inputin väliin */
+  font-weight: bold; /* Korostetaan tekstiä */
+}
+form#exerciseForm input[type="date"],
+form#exerciseForm input[type="number"],
+form#exerciseForm textarea
+form#entryForm input[type="date"],
+form#entryForm input[type="number"],
+form#entryForm textarea {
+  width: 100%; /* Asetetaan leveydeksi 100% */
+  padding: 10px; /* Lisätään paddingia */
+  margin-bottom: 20px; /* Lisätään marginaalia kenttien väliin */
+  border: 1px solid #ccc; /* Lisätään reunaviiva */
+  border-radius: 4px; /* Pyöristetyt kulmat */
+}
+
+/* Muokataan textarea-elementin ulkoasua */
+form#exerciseForm textarea
+form#entryForm textarea {
+  resize: vertical; /* Sallitaan vain pystysuuntainen koon muuttaminen */
+}
+
+/* Submit-painikkeen tyyli */
+form#exerciseForm button[type="submit"],
+form#entryForm button[type="submit"] {
+  background-color: #45a049;
+  color: white; /* Valkoinen teksti */
+  padding: 10px 20px; /* Padding */
+  border: none; /* Ei reunaviivaa */
+  border-radius: 4px; /* Pyöristetyt kulmat */
+  cursor: pointer; /* Muuttaa hiiren osoittimen käsimerkiksi */
+}
+
+form#entryForm button[type="submit"]:hover {
+  background-color: rgb(157, 208, 92);
+}
+
+#editWin {
+  display: block;
+  padding-left: 30px;
+
+}
   #loginResponse, #meResponse {
     font-family: 'Courier New', Courier, monospace;
     font-size: smaller;
@@ -358,45 +443,135 @@
     display: flex;
     border-radius: 10px;
   }
-  
+
 
   .box {
     color: aliceblue;
     background-color: rgb(174, 209, 129, 0.5);
   }
 
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .form-container {
+    flex: 1;
+  }
+
+
+
+  #wisdom-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  #wisdom-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    padding-top: 50px;
+  }
+
+  #index-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    width: 100%;
+    gap: 20px;
+
+  }
+
+  .flex-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    flex-grow: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px; 
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    gap: 10px; 
+    border-radius: 10px;
+    width: 200px;
+    height: 300;
+    box-shadow: 0 3px 10px black;
+  }
+  
+
+
   #left {
-    background-color: white;
-    color: black;
+    background-color:  rgb(89, 55, 25, 0.7);
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+  }
+
+  #left ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 0;
+  }
+
+
+  #center {
+    background-color: rgb(203, 153, 87, 0.7);;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+  }
+
+  #center ul li {
+    margin-bottom: 10px;
   }
 
   #right {
-    background-color: rgba(255, 166, 0, 0.708);
     flex: 1;
     display: flex;
-    flex-direction: column;
-  }
-
-  #upper {
-    flex: 35%;
-    display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+    background-color: rgba(1, 1, 246, 0.7);
+    text-align: center;
   }
-
-  #lower {
-    background-color: rgba(38, 120, 242, 0.77);
-    flex: 65%;
+  
+  #left h4 {
+    margin-bottom: 0;
   }
-
   .clear {
     clear: both;
   }
 
+  #disclaimer {
+    font-size:x-small;
+  }
+
+  #signature {
+    font-family: omaFontti;
+    font-size: 50px;
+    padding-left: 20px;
+  }
+
+  .button1 {
+    color: rgb(89, 55, 25);
+    border-style: solid;
+    border-radius: 10px;
+    background-color: rgba(245, 245, 220, 0.776);
+    padding: 10px;
+  }
+
+  @font-face {
+    font-family: "omaFontti";
+    src: url(/img/HerrVonMuellerhoff-Regular.otf)format("opentype");
+  }
 
   @media screen and (max-width: 816px) {
     #meditation {
