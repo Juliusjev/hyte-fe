@@ -7,7 +7,7 @@ import { fetchData } from './fetch.js';
 async function getEntryById() {
   console.log('Haetaan kaikki käyttäjän merkinnät tietokannasta')
   const user_id = localStorage.getItem('user_id');
-  const url = `http://127.0.0.1:3000/api/entries/${user_id}`;
+  const url = `https://healthdiary.northeurope.cloudapp.azure.com/api/entries/${user_id}`;
   let token = localStorage.getItem('token');
   const options = {
     method: 'GET',
@@ -38,7 +38,7 @@ function createTable(data) {
 
 // luodaan jokaiselle tietoriville oikeat elementit
 // elementtien sisään pistetään oikeat tiedot
-  reversedData.forEach((elnoement) => {
+  reversedData.forEach((element) => {
 
     // Luodaan jokaiselle riville ensin TR elementti 
     const tr = document.createElement('tr');
@@ -134,7 +134,7 @@ function createEntry(evt) {
 
   console.log(evt);
 
-  const url = `http://127.0.0.1:3000/api/entries/`;
+  const url = `https://healthdiary.northeurope.cloudapp.azure.com/api/entries/`;
   let token = localStorage.getItem('token');
 
   const newEntryDate = document.getElementById('setDate').value;
@@ -177,12 +177,12 @@ function updateEntry(evt) {
     console.log(evt);
 
     const entry_id = document.getElementById('entryId').value;
-    const url = `http://127.0.0.1:3000/api/entries/${entry_id}`;
+    const url = `https://healthdiary.northeurope.cloudapp.azure.com/api/entries/${entry_id}`;
     let token = localStorage.getItem('token');
 
     const newEntryDate = document.getElementById('editDate').value;
     const newMood = document.getElementById('editMood').value;
-    const newWeight = document.getElementById('editWeight').value;
+    const newWeight = parseFloat(document.getElementById('editWeight').value).toFixed(2);
     const newSleep = document.getElementById('editSleep').value;
     const newEntry = document.getElementById('editEntry').value;
 
@@ -215,7 +215,7 @@ function updateEntry(evt) {
 function deleteEntry(evt) {
     console.log(evt);
     const entry_id = evt.target.attributes['data-id'].value;
-    const url = `http://127.0.0.1:3000/api/entries/${entry_id}`;
+    const url = `https://healthdiary.northeurope.cloudapp.azure.com/api/entries/${entry_id}`;
     let token = localStorage.getItem('token');
     const options = {
       method: 'DELETE',
@@ -238,7 +238,7 @@ function deleteEntry(evt) {
 // Haetaan käyttäjän nimi tervehtimistä varten
 function showUsername() {
   console.log('Hei, täällä ollaan!');
-  const url = 'http://127.0.0.1:3000/api/auth/me';
+  const url = 'https://healthdiary.northeurope.cloudapp.azure.com/api/auth/me';
   let token = localStorage.getItem('token');
   const options = {
     method: 'GET',

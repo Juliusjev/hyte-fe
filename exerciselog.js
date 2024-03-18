@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function getExercisesById() {
   console.log('Haetaan kaikki käyttäjän harjoitukset tietokannasta')
   const user_id = localStorage.getItem('user_id');
-  const url = `http://127.0.0.1:3000/api/exercises/${user_id}`;
+  const url = `https://healthdiary.northeurope.cloudapp.azure.com/api/exercises/${user_id}`;
   let token = localStorage.getItem('token');
   const options = {
     method: 'GET',
@@ -145,7 +145,7 @@ function createExercise(evt) {
   evt.preventDefault();
   console.log(evt)
 
-  const url = `http://127.0.0.1:3000/api/exercises/`;
+  const url = `https://healthdiary.northeurope.cloudapp.azure.com/api/exercises/`;
   let token = localStorage.getItem('token');
 
   const newDuration = document.getElementById('setDuration').value;
@@ -184,7 +184,7 @@ function createExercise(evt) {
 // Funktio harjoituksen poistamiseksi
 function deleteExercise(evt) {
   const exercise_id = evt.target.attributes['data-id'].value;
-  const url = `http://127.0.0.1:3000/api/exercises/${exercise_id}`;
+  const url = `https://healthdiary.northeurope.cloudapp.azure.com/api/exercises/${exercise_id}`;
   let token = localStorage.getItem('token');
   const options = {
     method: 'DELETE',
@@ -209,16 +209,19 @@ function updateExercise(evt) {
   evt.preventDefault();
   console.log('Päivitetään harjoitus');
 
+  const user_id = localStorage.getItem('username');
   const exercise_id = document.getElementById('exerciseId').value;
 
-  const url = `http://127.0.0.1:3000/exercises/${exercise_id}`;
+  const url = `https://healthdiary.northeurope.cloudapp.azure.com/api/exercises/${exercise_id}`;
   let token = localStorage.getItem('token');
 
   const editDuration = document.getElementById('editDuration').value;
   const [tunnit, minuutit] = editDuration.split(':').map(Number);
   const durationMin = tunnit * 60 + minuutit;
+  
 
   const editExerciseBody = {
+    user_id: user_id,
     type: document.getElementById('editActivity').value,
     duration: durationMin,
     intensity: document.getElementById('editIntensity').value,
@@ -245,7 +248,7 @@ function updateExercise(evt) {
 // Haetaan käyttäjän nimi tervehtimistä varten
 function showUsername() {
   console.log('Hei, täällä ollaan!');
-  const url = 'http://127.0.0.1:3000/api/auth/me';
+  const url = 'https://healthdiary.northeurope.cloudapp.azure.com/api/auth/me';
   let token = localStorage.getItem('token');
   const options = {
     method: 'GET',

@@ -18,7 +18,7 @@ document.getElementById('logout').addEventListener('click', function() {
 
 // Haetaan käyttäjän nimi tervehtimistä varten
 function showUsername() {
-  const url = 'http://127.0.0.1:3000/api/auth/me';
+  const url = 'https://healthdiary.northeurope.cloudapp.azure.com/api/auth/me';
   let token = localStorage.getItem('token');
   const options = {
     method: 'GET',
