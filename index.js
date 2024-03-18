@@ -53,7 +53,16 @@ const createUserForm = createUserModal.querySelector('#create_user_form');
 
 createUser.addEventListener('click', async (evt) => {
   evt.preventDefault();
-  const url = 'http://127.0.0.1:3000/api/users';
+  const url = 'https://healthdiary.northeurope.cloudapp.azure.com/api/users';
+
+  const password = createUserForm.querySelector('input[name=password]').value;
+  const confirmPassword = createUserForm.querySelector('input[name=confirmPassword]').value;
+
+  if (password !== confirmPassword) {
+    alert('Salasanat eivät täsmää. Yritä uudelleen.');
+    return; // Estetään lomakkeen lähetys, koska salasanat eivät täsmää
+  }
+
 
   const data = {
     username: createUserForm.querySelector('input[name=username]').value,
@@ -87,7 +96,7 @@ loginUser.addEventListener('click', async (evt) => {
   evt.preventDefault();
   console.log('Nyt logataan sisään');
 
-  const url = 'http://127.0.0.1:3000/api/auth/login'
+  const url = 'https://healthdiary.northeurope.cloudapp.azure.com//api/auth/login'
   const form = document.querySelector('#login_form');
 
   const data = {

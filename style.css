@@ -285,6 +285,8 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-size:large;
+    margin: 10px;
   }
   #name {
     font-weight: bolder;
@@ -506,7 +508,7 @@ form#entryForm button[type="submit"]:hover {
 
 
   #left {
-    background-color:  rgb(89, 55, 25, 0.7);
+    background-color:  rgb(89, 55, 25, 0.8);
     flex: 1;
     display: flex;
     justify-content: center;
@@ -552,6 +554,8 @@ form#entryForm button[type="submit"]:hover {
 
   #disclaimer {
     font-size:x-small;
+    padding: 0;
+    margin: 0;
   }
 
   #signature {

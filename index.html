@@ -22,7 +22,8 @@
                   <label for="username">Käyttäjätunnus</label>
                   <input type="text" name="username" placeholder="Käyttäjätunnus" />
                   <label for="password">Salasana (min 8. merkkiä)</label>
-                  <input type="password" name="password" placeholder="Salasana" />
+                  <input type="password" name="password" placeholder="Salasana" required>
+                  <input type="password" name="confirmPassword" placeholder="Vahvista salasana" required>
                   <label for="email">Email</label>
                   <input type="email" name="email" placeholder="Sposti" />
                   <input name="submit" type="submit" value="Luo käyttäjä" class="createuser" />
@@ -49,8 +50,6 @@
         <div id="minikuva"></div>
     </nav>
 
-
-
   
     <div id="intro">
       <h1> Tervetuloa HealthDiaryyn! </h1>
@@ -65,6 +64,7 @@
         päivittäinen vedenjuontisi, nukkumistottumuksesi, mielialasi tai liikuntasuorituksesi, tämä
         päiväkirja on henkilökohtainen avustajasi terveytesi seurannassa.
         <span id="disclaimer">*Kaikki ominaisuudet eivät välttämättä vielä saatavilla</span>
+      </p>
       <p>
         Ilo ja kunnia saada sut mun nettisivulla käymään! 
       </p>
@@ -72,7 +72,7 @@
         Mukavia terveyshetkiä!
       </p>
       <p> 
-        <span id="signature">Juliusev</span>
+        <span id="signature">Julius</span>
       </p>
       </p>
     </div>
@@ -94,7 +94,7 @@
         </ul>
       </div>
       <div class="flex-item" id="right">
-        <p>&copy;2024 Julius</p>
+        <p>&copy;2024 juliusev</p>
       </div>
     </div>
   </body>

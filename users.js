@@ -17,7 +17,7 @@ let allUsers = [];
 // Funktio kaikkien käyttäjien haulle
 async function getUsers() {
   console.log('Haetaan kaikki käyttäjät tietokannasta')
-  const url = 'http://127.0.0.1:3000/api/users';
+  const url = 'https://healthdiary.northeurope.cloudapp.azure.com/api/users';
   let token = localStorage.getItem('token');
   const options = {
     method: 'GET',
@@ -130,7 +130,7 @@ function updateUser(evt) {
   const newEmail = document.getElementById('newEmail').value;
   const token = localStorage.getItem('token');
 
-  const url = "http://127.0.0.1:3000/api/users"
+  const url = "https://healthdiary.northeurope.cloudapp.azure.com/api/users"
   const options = {
     method: 'PUT',
     headers: {
@@ -164,7 +164,7 @@ function deleteUser(evt) {
   const id = evt.target.attributes['data-id'].value;
 
 
-  const url = `http://127.0.0.1:3000/api/users/${id}`;
+  const url = `https://healthdiary.northeurope.cloudapp.azure.com/api/users/${id}`;
   let token = localStorage.getItem('token');
   const options = {
     method: 'DELETE',
@@ -195,7 +195,7 @@ function deleteUser(evt) {
 
 // Haetaan top5-aktiivisinta käyttäjää
 function fetchTop5() {
-  const url = 'http://127.0.0.1:3000/api/entries/top'; 
+  const url = 'https://healthdiary.northeurope.cloudapp.azure.com/api/entries/top'; 
   const options = {
     method: 'GET',
   };
@@ -254,7 +254,7 @@ function createTop5Table(data) {
 // Haetaan käyttäjän nimi tervehtimistä varten
 function showUsername() {
   console.log('Hei, täällä ollaan!');
-  const url = 'http://127.0.0.1:3000/api/auth/me';
+  const url = 'https://healthdiary.northeurope.cloudapp.azure.com/api/auth/me';
   let token = localStorage.getItem('token');
   const options = {
     method: 'GET',
